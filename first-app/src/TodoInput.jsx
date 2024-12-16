@@ -1,13 +1,14 @@
 import { useState } from "react";
 
 function TodoInput(props){  
-    let todos = props.todos;
     const addTodos = props.addTodos;
     const [inputValue, setInputValue] = useState("")
 
     function handleAddTodos(){
         addTodos(inputValue);
         setInputValue("");
+
+        
     }
     return(
             <div className="input-div">

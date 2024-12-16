@@ -10,20 +10,27 @@ function App() {
     return todo ? JSON.parse(todo) : [];
   });
 
-  function addTodos(todo) {
-    const newTodo = { name: todo, done: false };
+function addTodos(todo) {
+    const newTodo = {key: Date.now(), name: todo, done: false };
     setTodos([...todos, newTodo]);
-  }
+}
+
+function checkTodo(todo){
+  if (todo.done === true) todo.done = false;
+    else todo.done = true;
+}
+  
   
   useEffect(() => {
     localStorage.setItem("todoList", JSON.stringify(todos))
   }, [todos])
 
+
   return (
     <>
       <Header />
       <TodoInput todos={todos} addTodos={addTodos} />
-      <TodoList todos={todos} />
+      <TodoList todos={todos} checkTodo={checkTodo} />
     </>
   );
 }
